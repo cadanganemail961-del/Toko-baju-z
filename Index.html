@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toko zikra store</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f7f8fc;
+      color:#222;
+    }
+
+    header{
+      background:linear-gradient(135deg,#1e3a8a,#2563eb);
+      color:white;
+      padding:20px 30px;
+      position:sticky;
+      top:0;
+      z-index:1000;
+      box-shadow:0 4px 10px rgba(0,0,0,0.12);
+    }
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      max-width:1200px;
+      margin:auto;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    .logo{
+      font-size:26px;
+      font-weight:bold;
+      letter-spacing:0.5px;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .nav-links a{
+      color:white;
+      text-decoration:none;
+      font-weight:bold;
+      font-size:15px;
+    }
+
+    .hero{
+      min-height:85vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:50px 20px;
+      background:linear-gradient(rgba(30,58,138,0.70), rgba(37,99,235,0.70)),
+      url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1400&q=80') center/cover;
+      color:white;
+      text-align:center;
+    }
+
+    .hero-content{
+      max-width:800px;
+    }
+
+    .hero-content h1{
+      font-size:48px;
+      margin-bottom:20px;
+      line-height:1.2;
+    }
+
+    .hero-content p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:25px;
+    }
+
+    .btn{
+      display:inline-block;
+      padding:14px 26px;
+      border-radius:30px;
+      text-decoration:none;
+      font-weight:bold;
+      transition:0.3s;
+      margin:6px;
+    }
+
+    .btn-primary{
+      background:#facc15;
+      color:#1f2937;
+    }
+
+    .btn-primary:hover{
+      background:#eab308;
+    }
+
+    .btn-secondary{
+      border:2px solid white;
+      color:white;
+    }
+
+    .btn-secondary:hover{
+      background:white;
+      color:#1e3a8a;
+    }
+
+    .section{
+      max-width:1200px;
+      margin:auto;
+      padding:70px 20px;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:40px;
+    }
+
+    .section-title h2{
+      font-size:34px;
+      color:#1e3a8a;
+      margin-bottom:10px;
+    }
+
+    .section-title p{
+      color:#555;
+      font-size:16px;
+    }
+
+    .kjp-box{
+      background:#eff6ff;
+      border:2px solid #93c5fd;
+      color:#1e3a8a;
+      padding:25px;
+      border-radius:18px;
+      text-align:center;
+      margin-bottom:40px;
+      box-shadow:0 8px 20px rgba(37,99,235,0.08);
+    }
+
+    .kjp-box h3{
+      margin-bottom:10px;
+      font-size:28px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:22px;
+    }
+
+    .card{
+      background:white;
+      border-radius:18px;
+      overflow:hidden;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+      transition:0.3s;
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+    }
+
+    .card img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+    }
+
+    .card-content{
+      padding:18px;
+    }
+
+    .card-content h3{
+      font-size:22px;
+      margin-bottom:10px;
+      color:#111827;
+    }
+
+    .card-content p{
+      color:#666;
+      line-height:1.6;
+      margin-bottom:12px;
+    }
+
+    .price{
+      font-size:20px;
+      font-weight:bold;
+      color:#2563eb;
+    }
+
+    .info-wrap{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+
+    .info-box{
+      background:white;
+      padding:25px;
+      border-radius:18px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .info-box h3{
+      color:#1e3a8a;
+      margin-bottom:12px;
+      font-size:24px;
+    }
+
+    .info-box p, .info-box li{
+      color:#555;
+      line-height:1.8;
+    }
+
+    .info-box ul{
+      padding-left:18px;
+      margin-top:8px;
+    }
+
+    .cta{
+      background:linear-gradient(135deg,#1e3a8a,#2563eb);
+      color:white;
+      border-radius:24px;
+      padding:40px 25px;
+      text-align:center;
+      box-shadow:0 12px 24px rgba(37,99,235,0.18);
+    }
+
+    .cta h2{
+      font-size:34px;
+      margin-bottom:10px;
+    }
+
+    .cta p{
+      font-size:17px;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    footer{
+      background:#111827;
+      color:#d1d5db;
+      text-align:center;
+      padding:24px 20px;
+      margin-top:50px;
+    }
+
+    @media(max-width:768px){
+      .hero-content h1{
+        font-size:34px;
+      }
+
+      .hero-content p{
+        font-size:16px;
+      }
+
+      .logo{
+        font-size:22px;
+      }
+    }
+    .btn-wa{
+background:#25D366;
+color:white;
+padding:14px 28px;
+border-radius:30px;
+font-weight:bold;
+display:inline-flex;
+align-items:center;
+gap:8px;
+text-decoration:none;
+font-size:19px;
+animation: waAnim 1.5s infinite;
+}
+
+.btn-wa:hover{
+transform:scale(1.08);
+}
+
+@keyframes waAnim{
+0%{transform:scale(1);}
+50%{transform:scale(1.08);}
+100%{transform:scale(1);}
+}
+.float-shopee{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#ee4d2d;
+color:white;
+padding:14px 20px;
+border-radius:30px;
+font-weight:bold;
+text-decoration:none;
+box-shadow:0 6px 16px rgba(0,0,0,0.3);
+animation: shopeeFloat 2s infinite;
+}
+@keyframes shopeeFloat{
+0%{transform:translateY(0);}
+50%{transform:translateY(-8px);}
+100%{transform:translateY(0);}
+}
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo">Toko Baju Zikra</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#produk">Produk</a>
+        <a href="#perlengkapan">Perlengkapan</a>
+        <a href="#kjp">Alamat</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Toko zikra</h1>
+      <p>
+        Menjual berbagai macam seragam sekolah, tas, kaos kaki, topi, dasi,
+        alat tulis, hingga perlengkapan sholat seperti sarung peci dan lainnya. Tersedia juga layanan pembayaran melalui KJP.
+      </p>
+      <a href="#produk" class="btn btn-primary">Lihat Produk</a>
+      <a href="#kontak" class="btn btn-secondary">Pesan Sekarang</a>
+    </div>
+  </section>
+
+  <section class="section" id="kjp">
+    <div class="kjp-box">
+      <h3>Alamat Toko</h3>
+      <p>
+        Belakang puskesmas kebun kelapa rt 08 /01 kelurahan kamal kecamatan kalideres jak barat., KOTA JAKARTA BARAT, KALIDERES, DKI JAKARTA,
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="produk">
+    <div class="section-title">
+      <h2>Produk Seragam Sekolah</h2>
+      <p>Pilihan seragam berkualitas untuk SD, SMP, SMA, dan kebutuhan sekolah lainnya.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <img src="Sd.jpg" alt="Seragam Putih Merah">
+        <div class="card-content">
+          <h3>✨Seragam SD</h3>
+          <p>Seragam putih merah dengan bahan adem, nyaman, dan cocok untuk aktivitas harian siswa✨.</p>
+          <div class="price">Mulai Rp80.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Smp.jpg" alt="Seragam SMP">
+        <div class="card-content">
+          <h3>✨Seragam SMP</h3>
+          <p>Seragam putih biru dengan jahitan rapi, tampilan modern, dan ukuran lengkap✨</p>
+          <div class="price">Mulai Rp110.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Sma.jpg" alt="Seragam SMA">
+        <div class="card-content">
+          <h3>✨Seragam SMA</h3>
+          <p>Seragam putih abu dengan desain rapi dan elegan untuk kebutuhan sekolah menengah atas✨.</p>
+          <div class="price">Mulai Rp120.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Olahraga.jpg" alt="Baju Olahraga">
+        <div class="card-content">
+          <h3>✨Baju Olahraga</h3>
+          <p>Seragam olahraga sekolah dengan bahan ringan, fleksibel, dan nyaman dipakai✨.</p>
+          <div class="price">Mulai Rp100.000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="perlengkapan">
+    <div class="section-title">
+      <h2>Perlengkapan Sekolah</h2>
+      <p>Semua kebutuhan sekolah tersedia dalam satu tempat.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <img src="Tas.jpg" alt="Tas Sekolah">
+        <div class="card-content">
+          <h3>Tas Sekolah</h3>
+          <p>Tas kuat, muat banyak, cocok untuk anak sekolah dari berbagai jenjang.</p>
+          <div class="price">Mulai Rp90.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Sholat.jpg" alt="Sepatu Sekolah">
+        <div class="card-content">
+          <h3>Perlengkapan sholat</h3>
+          <p>
+Tersedia sarung, mukena, kerudung, peci, dan sejadah dengan bahan nyaman, adem dipakai, dan tampilan rapi untuk ibadah yang lebih khusyuk.
+
+
+</p>
+          <div class="price">Mulai Rp50.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Tulis.jpg" alt="Alat Tulis">
+        <div class="card-content">
+          <h3>Alat Tulis</h3>
+          <p>Tersedia pensil, pena, penghapus, buku tulis, penggaris, dan kebutuhan belajar lainnya.</p>
+          <div class="price">Mulai Rp3.000</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="Atribut.jpg" alt="Sarung">
+        <div class="card-content">
+          <h3>Atribut sekolah</h3>
+          <p>Tersedia topi, dasi, ikat pinggang, kaos kaki, atribut sekolah, dan perlengkapan pelengkap.</p>
+          <div class="price">Mulai Rp5.000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="info-wrap">
+      <div class="info-box">
+        <h3>Kenapa Belanja di Sini?</h3>
+        <ul>
+          <li>Produk sekolah lengkap</li>
+          <li>Ukuran seragam tersedia banyak</li>
+          <li>Bisa melayani pembelian satuan maupun paket</li>
+          <li>Harga ramah di kantong</li>
+          <li>Bisa melayani pembayaran melalui KJP</li>
+          <li>Bahan awet dan tahan lama</li>
+        </ul>
+      </div>
+
+      <div class="info-box">
+        <h3>Informasi Pembelian KJP</h3>
+        <p>
+          Untuk pembelian menggunakan KJP, pelanggan dapat menghubungi admin terlebih dahulu
+          atau bisa juga mengunjungi toko kami
+        </p>
+        <p>
+          alamat sudah tersedia di atas👆
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="kontak">
+    <div class="cta">
+      <h2>Pesan Sekarang</h2>
+      <p>
+        Hubungi kami untuk pemesanan seragam sekolah, perlengkapan sekolah,
+        atau pertanyaan terkait pembelian dengan KJP.
+      </p>
+      <a href="https://wa.me/6281382197787?text=Halo%20kak,%20saya%20ingin%20tanya%20tentang%20seragam%20dan%20ukuran%20tersedia" class="btn-wa" target="_blank">
+  <i class="fab fa-whatsapp"></i>
+  <span>Chat WhatsApp</span>
+</a>
+      <a href="https://shopee.co.id/mulyadi.326" class="float-shopee">
+🛍 Shopee
+</a>
+</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Toko Baju Zikra | Menjual Seragam & Perlengkapan Sekolah</p>
+  </footer>
+
+</body>
+</html>
